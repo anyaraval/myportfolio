@@ -86,6 +86,8 @@
     .project-link { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; }
     .project-link:hover { color: var(--accent); border-color: var(--accent); }
     .project-link svg { width: 10px; height: 10px; }
+    .login-hint { font-size: 0.75rem; color: var(--mid); background: var(--accent-light); border: 1px solid var(--border); border-radius: 3px; padding: 0.4rem 0.75rem; margin-top: 0.25rem; display: inline-block; line-height: 1.5; }
+    .login-hint strong { color: var(--accent); font-weight: 500; }
 
     /* ── EXPERIENCE TIMELINE (with logos) ── */
     #experience { background: var(--bg); }
@@ -93,11 +95,13 @@
     .timeline::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent), transparent); }
     .timeline-item { position: relative; padding-bottom: 3rem; padding-left: 1.5rem; opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
     .timeline-item.visible { opacity: 1; transform: translateY(0); }
-    .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 0.55rem; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 2px var(--accent); }
-    .timeline-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 0.6rem; }
-    .timeline-logo { width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--border); background: var(--white); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; padding: 4px; }
-    .timeline-logo img { width: 100%; height: 100%; object-fit: contain; }
-    .timeline-logo-placeholder { width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--border); background: var(--accent-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.7rem; font-weight: 600; color: var(--accent); letter-spacing: 0.05em; }
+    /* dot sits on the vertical line, centred with the job title row */
+    .timeline-item::before { content: ''; position: absolute; left: calc(-2rem - 4px); top: 1.85rem; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 2px var(--accent); }
+    .timeline-date-line { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.55rem; }
+    .timeline-header { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.4rem; }
+    .timeline-logo { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; overflow: hidden; }
+    .timeline-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .timeline-logo-placeholder { width: 36px; height: 36px; border-radius: 8px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.7rem; font-weight: 600; color: var(--accent); letter-spacing: 0.05em; }
     .timeline-meta { flex: 1; }
     .timeline-date { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.2rem; }
     .timeline-role { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.1rem; }
@@ -109,8 +113,8 @@
     /* ── EDUCATION ── */
     #education { background: var(--white); }
     .edu-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 2rem 2.5rem; display: flex; gap: 2rem; align-items: flex-start; max-width: 860px; }
-    .edu-logo { width: 52px; height: 52px; border-radius: 10px; border: 1px solid var(--border); background: var(--white); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; padding: 6px; }
-    .edu-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .edu-logo { width: 52px; height: 52px; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
+    .edu-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .edu-body { flex: 1; }
     .edu-degree { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.2rem; }
     .edu-uni { font-size: 0.85rem; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 0.2rem; }
@@ -137,8 +141,8 @@
     .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); gap: 1rem; }
     .cert-card { border: 1px solid var(--border); border-radius: 6px; padding: 1.1rem 1.25rem; display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; transition: all 0.25s; background: var(--white); }
     .cert-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,92,191,0.1); }
-    .cert-logo { width: 36px; height: 36px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; padding: 4px; }
-    .cert-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .cert-logo { width: 36px; height: 36px; border-radius: 6px; flex-shrink: 0; overflow: hidden; }
+    .cert-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .cert-logo-text { width: 36px; height: 36px; border-radius: 6px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.65rem; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; text-align: center; line-height: 1.2; }
     .cert-info { flex: 1; }
     .cert-issuer { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.25rem; }
@@ -246,8 +250,10 @@
       <p>Leading UX design for a safeguarding intervention management platform for a real industry client. Translated stakeholder requirements into structured data models and responsive, high-fidelity Figma prototypes. Contributing to full-stack development in React and Java.</p>
       <div class="project-links">
         <a href="https://www.figma.com/proto/fRIlDMHkb87lz070Zpo8pd/Project-9a---Safeguarding-Timeline-Generator?node-id=63-173&p=f&t=crNzsZP6HnvnVvIB-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=124%3A211" target="_blank" class="project-link">Prototype <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
-        <a href="https://www.dropbox.com/scl/fi/txqe0ffylndmxjaghdkyb/James.png?rlkey=ip76yq7ad258dqw6mkxd9pfes&st=zm5c54ge&dl=0" target="_blank" class="project-link">Persona <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
+        <a href="https://www.dropbox.com/scl/fi/qhn297hpui72g4axrpm8r/James.pdf?rlkey=ebcyt0xlg8a1gb08p029fuyss&st=l91eop5k&dl=0" target="_blank" class="project-link">Persona <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
+        <a href="https://timeline.alyx.pw/" target="_blank" class="project-link">Live App <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
       </div>
+      <div class="login-hint">🔐 Demo login — username: <strong>ADumbledore</strong> &nbsp;·&nbsp; password: <strong>password</strong></div>
     </div>
 
     <div class="project-card fade-up">
@@ -301,12 +307,12 @@
   <div class="timeline">
 
     <div class="timeline-item">
+      <div class="timeline-date">Oct 2025 — Present</div>
       <div class="timeline-header">
         <div class="timeline-logo">
-          <img src="cardiff.png" alt="Cardiff University" onerror="this.parentElement.innerHTML='CU'" />
+          <img src="cardiff.png" alt="Cardiff University" onerror="this.parentElement.outerHTML='<div class=timeline-logo-placeholder>CU</div>'" />
         </div>
         <div class="timeline-meta">
-          <div class="timeline-date">Oct 2025 — Present</div>
           <div class="timeline-role">STEM Ambassador</div>
           <div class="timeline-org">Cardiff University · TechnoCamps</div>
         </div>
@@ -319,12 +325,12 @@
     </div>
 
     <div class="timeline-item">
+      <div class="timeline-date">Jun 2025 — Aug 2025</div>
       <div class="timeline-header">
         <div class="timeline-logo">
-          <img src="Funtech.png" alt="FunTech" onerror="this.parentElement.innerHTML='FT'" />
+          <img src="Funtech.png" alt="FunTech" onerror="this.parentElement.outerHTML='<div class=timeline-logo-placeholder>FT</div>'" />
         </div>
         <div class="timeline-meta">
-          <div class="timeline-date">Jun 2025 — Aug 2025</div>
           <div class="timeline-role">Summer Tech Camp Tutor & Assistant Location Coordinator</div>
           <div class="timeline-org">FunTech</div>
         </div>
@@ -337,12 +343,12 @@
     </div>
 
     <div class="timeline-item">
+      <div class="timeline-date">Jun 2024 — Aug 2024</div>
       <div class="timeline-header">
         <div class="timeline-logo">
-          <img src="smallpeice.png" alt="The Smallpeice Trust" onerror="this.parentElement.className='timeline-logo-placeholder';this.parentElement.textContent='SP'" />
+          <img src="smallpeice.png" alt="The Smallpeice Trust" onerror="this.parentElement.outerHTML='<div class=timeline-logo-placeholder>SP</div>'" />
         </div>
         <div class="timeline-meta">
-          <div class="timeline-date">Jun 2024 — Aug 2024</div>
           <div class="timeline-role">Residential Supervisor</div>
           <div class="timeline-org">The Smallpeice Trust</div>
         </div>
