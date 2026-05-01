@@ -11,168 +11,117 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #F7F5FB;
-      --white: #FFFFFF;
-      --ink: #1E1A2E;
-      --mid: #6B6480;
-      --accent: #7C5CBF;
-      --accent-light: #EDE8F7;
-      --lilac: #C5B8E8;
-      --border: rgba(124,92,191,0.13);
-      --dark-bg: #1E1A2E;
+      --bg: #F7F5FB; --white: #FFFFFF; --ink: #1E1A2E; --mid: #6B6480;
+      --accent: #7C5CBF; --accent-light: #EDE8F7; --lilac: #C5B8E8;
+      --border: rgba(124,92,191,0.13); --dark-bg: #1E1A2E;
     }
-
     html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; overflow-x: hidden; }
 
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
       padding: 1.25rem 4vw;
-      background: rgba(247,245,251,0.9);
-      backdrop-filter: blur(14px);
+      background: rgba(247,245,251,0.92); backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-logo {
-      font-family: 'Playfair Display', serif; font-size: 1.15rem;
-      letter-spacing: 0.02em; color: var(--ink); text-decoration: none;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--mid); text-decoration: none; transition: color 0.2s;
-    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; letter-spacing: 0.02em; color: var(--ink); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a { font-size: 0.76rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
 
-    /* HERO */
+    /* ── HERO ── */
     #hero {
-      min-height: 100svh;
-      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 100svh; display: grid; grid-template-columns: 1fr 1fr;
       align-items: center; padding: 8rem 4vw 4rem; gap: 4rem; position: relative;
     }
     #hero::after {
-      content: ''; position: absolute; top: 5%; right: -8vw;
-      width: 55vw; height: 75vh;
+      content: ''; position: absolute; top: 5%; right: -8vw; width: 55vw; height: 75vh;
       border-radius: 60% 40% 50% 40%;
       background: radial-gradient(ellipse at 55% 45%, #ddd4f5 0%, #ede8f7 40%, transparent 70%);
       opacity: 0.65; pointer-events: none; z-index: 0;
     }
     .hero-text { position: relative; z-index: 1; }
-    .hero-eyebrow {
-      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1.25rem;
-      display: flex; align-items: center; gap: 0.75rem;
-    }
+    .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
     .hero-eyebrow::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--accent); }
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 700;
-      line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -0.02em;
-    }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 700; line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
     h1 em { font-style: italic; color: var(--accent); }
     .hero-desc { font-size: 1.05rem; color: var(--mid); max-width: 38ch; margin-bottom: 2.5rem; line-height: 1.75; }
     .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn {
-      display: inline-block; padding: 0.75rem 1.75rem; border-radius: 3px;
-      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
-      text-decoration: none; transition: all 0.25s; cursor: pointer; border: none;
-    }
+    .btn { display: inline-block; padding: 0.75rem 1.75rem; border-radius: 3px; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.25s; cursor: pointer; border: none; }
     .btn-primary { background: var(--accent); color: #fff; }
     .btn-primary:hover { background: #6448a8; }
     .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--accent); }
     .btn-outline:hover { background: var(--accent); color: #fff; }
-
     .hero-stats { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 1.5rem; }
-    .stat-card {
-      background: var(--white); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1.5rem 1.75rem; display: flex; align-items: center; gap: 1.5rem;
-      opacity: 0; transform: translateX(30px); animation: slideIn 0.6s forwards;
-    }
+    .stat-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem 1.75rem; display: flex; align-items: center; gap: 1.5rem; opacity: 0; transform: translateX(30px); animation: slideIn 0.6s forwards; }
     .stat-card:nth-child(1) { animation-delay: 0.3s; }
     .stat-card:nth-child(2) { animation-delay: 0.5s; }
     .stat-card:nth-child(3) { animation-delay: 0.7s; }
     @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
-    .stat-num {
-      font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700;
-      color: var(--accent); line-height: 1; min-width: 4.5rem;
-    }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--accent); line-height: 1; min-width: 4.5rem; }
     .stat-label { font-size: 0.85rem; color: var(--mid); line-height: 1.4; }
     .stat-label strong { display: block; color: var(--ink); font-weight: 500; font-size: 0.95rem; }
 
-    /* SECTION SHARED */
+    /* ── SHARED SECTION ── */
     section { padding: 6rem 4vw; }
     .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3.5rem; }
     .section-num { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--accent); font-style: italic; }
     h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; }
     .divider { flex: 1; height: 1px; background: var(--border); align-self: center; }
 
-    /* PROJECTS */
+    /* ── PROJECTS ── */
     #projects { background: var(--white); }
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 2px; }
-    .project-card {
-      background: var(--bg); padding: 2.5rem;
-      display: flex; flex-direction: column; gap: 1rem;
-      transition: background 0.25s; position: relative; overflow: hidden;
-    }
-    .project-card::before {
-      content: ''; position: absolute; bottom: 0; left: 0;
-      width: 3px; height: 0; background: var(--accent); transition: height 0.35s ease;
-    }
+    .project-card { background: var(--bg); padding: 2.5rem; display: flex; flex-direction: column; gap: 1rem; transition: background 0.25s; position: relative; overflow: hidden; }
+    .project-card::before { content: ''; position: absolute; bottom: 0; left: 0; width: 3px; height: 0; background: var(--accent); transition: height 0.35s ease; }
     .project-card:hover::before { height: 100%; }
     .project-card:hover { background: var(--accent-light); }
     .project-tag { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
-    .project-grade {
-      display: inline-block; background: var(--accent); color: #fff;
-      font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.2rem 0.6rem; border-radius: 2px; font-weight: 500;
-    }
+    .project-grade { display: inline-block; background: var(--accent); color: #fff; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 2px; font-weight: 500; }
     .project-card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; line-height: 1.2; }
     .project-card p { font-size: 0.88rem; color: var(--mid); line-height: 1.75; flex: 1; }
     .project-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem; }
-    .project-link {
-      font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--ink); text-decoration: none;
-      display: flex; align-items: center; gap: 0.4rem;
-      border-bottom: 1px solid var(--border); padding-bottom: 1px;
-      transition: color 0.2s, border-color 0.2s;
-    }
+    .project-link { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; }
     .project-link:hover { color: var(--accent); border-color: var(--accent); }
     .project-link svg { width: 10px; height: 10px; }
 
-    /* TIMELINE */
+    /* ── EXPERIENCE TIMELINE (with logos) ── */
     #experience { background: var(--bg); }
     .timeline { position: relative; padding-left: 2rem; max-width: 760px; }
-    .timeline::before {
-      content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0;
-      width: 1px; background: linear-gradient(to bottom, var(--accent), transparent);
-    }
-    .timeline-item {
-      position: relative; padding-bottom: 3rem; padding-left: 1.5rem;
-      opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s;
-    }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent), transparent); }
+    .timeline-item { position: relative; padding-bottom: 3rem; padding-left: 1.5rem; opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
     .timeline-item.visible { opacity: 1; transform: translateY(0); }
-    .timeline-item::before {
-      content: ''; position: absolute; left: -2rem; top: 0.4rem;
-      width: 9px; height: 9px; border-radius: 50%;
-      background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 2px var(--accent);
-    }
-    .timeline-date { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
-    .timeline-role { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.2rem; }
-    .timeline-org { font-size: 0.82rem; color: var(--mid); margin-bottom: 0.85rem; }
-    .timeline-item ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 0.55rem; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 2px var(--accent); }
+    .timeline-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 0.6rem; }
+    .timeline-logo { width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--border); background: var(--white); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; padding: 4px; }
+    .timeline-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .timeline-logo-placeholder { width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--border); background: var(--accent-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.7rem; font-weight: 600; color: var(--accent); letter-spacing: 0.05em; }
+    .timeline-meta { flex: 1; }
+    .timeline-date { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.2rem; }
+    .timeline-role { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.1rem; }
+    .timeline-org { font-size: 0.82rem; color: var(--mid); }
+    .timeline-item ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; margin-top: 0.75rem; }
     .timeline-item li { font-size: 0.88rem; color: var(--mid); line-height: 1.65; display: flex; gap: 0.65rem; }
     .timeline-item li::before { content: '—'; color: var(--accent); flex-shrink: 0; }
 
-    /* SKILLS */
+    /* ── EDUCATION ── */
+    #education { background: var(--white); }
+    .edu-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 2rem 2.5rem; display: flex; gap: 2rem; align-items: flex-start; max-width: 860px; }
+    .edu-logo { width: 52px; height: 52px; border-radius: 10px; border: 1px solid var(--border); background: var(--white); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; padding: 6px; }
+    .edu-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .edu-body { flex: 1; }
+    .edu-degree { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .edu-uni { font-size: 0.85rem; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 0.2rem; }
+    .edu-dates { font-size: 0.75rem; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+    .edu-grade { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--accent); color: #fff; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.75rem; border-radius: 2px; font-weight: 500; margin-bottom: 1.25rem; }
+    .edu-modules h4 { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); margin-bottom: 0.75rem; }
+    .module-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .module-tag { font-size: 0.78rem; padding: 0.3rem 0.7rem; background: var(--white); border: 1px solid var(--border); border-radius: 2px; color: var(--ink); }
+    .module-tag span { color: var(--accent); font-weight: 500; margin-left: 0.3rem; }
+
+    /* ── SKILLS ── */
     #skills { background: var(--dark-bg); color: #fff; }
     #skills h2 { color: #fff; }
     #skills .section-num { color: var(--lilac); }
@@ -180,45 +129,33 @@
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
     .skill-group h4 { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac); margin-bottom: 1rem; }
     .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .skill-tag {
-      font-size: 0.78rem; padding: 0.35rem 0.75rem;
-      border: 1px solid rgba(197,184,232,0.25); border-radius: 2px;
-      color: rgba(255,255,255,0.7); transition: all 0.2s;
-    }
+    .skill-tag { font-size: 0.78rem; padding: 0.35rem 0.75rem; border: 1px solid rgba(197,184,232,0.25); border-radius: 2px; color: rgba(255,255,255,0.7); transition: all 0.2s; }
     .skill-tag:hover { border-color: var(--lilac); color: var(--lilac); }
 
-    /* CERTIFICATES */
-    #certificates { background: var(--white); }
-    .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 1rem; }
-    .cert-card {
-      border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem 1.5rem;
-      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-      text-decoration: none; color: inherit; transition: all 0.25s;
-    }
+    /* ── CERTIFICATES (with logos) ── */
+    #certificates { background: var(--bg); }
+    .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); gap: 1rem; }
+    .cert-card { border: 1px solid var(--border); border-radius: 6px; padding: 1.1rem 1.25rem; display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; transition: all 0.25s; background: var(--white); }
     .cert-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,92,191,0.1); }
-    .cert-issuer { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
-    .cert-name { font-size: 0.88rem; font-weight: 500; color: var(--ink); line-height: 1.35; }
-    .cert-arrow { color: var(--mid); font-size: 1.1rem; transition: transform 0.2s, color 0.2s; }
+    .cert-logo { width: 36px; height: 36px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; padding: 4px; }
+    .cert-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .cert-logo-text { width: 36px; height: 36px; border-radius: 6px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.65rem; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; text-align: center; line-height: 1.2; }
+    .cert-info { flex: 1; }
+    .cert-issuer { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.25rem; }
+    .cert-name { font-size: 0.85rem; font-weight: 500; color: var(--ink); line-height: 1.3; }
+    .cert-arrow { color: var(--mid); font-size: 1rem; transition: transform 0.2s, color 0.2s; flex-shrink: 0; }
     .cert-card:hover .cert-arrow { transform: translate(3px,-3px); color: var(--accent); }
 
-    /* CONTACT */
-    #contact { background: var(--bg); text-align: center; padding: 8rem 4vw; }
-    #contact h2 { margin-bottom: 1rem; }
-    #contact p { color: var(--mid); max-width: 40ch; margin: 0 auto 2.5rem; font-size: 1rem; }
+    /* ── CONTACT ── */
+    #contact { background: var(--dark-bg); text-align: center; padding: 8rem 4vw; }
+    #contact h2 { color: #fff; margin-bottom: 1rem; }
+    #contact p { color: rgba(255,255,255,0.5); max-width: 40ch; margin: 0 auto 2.5rem; font-size: 1rem; }
     .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-    .contact-link {
-      display: flex; align-items: center; gap: 0.5rem;
-      font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--mid); text-decoration: none; transition: color 0.2s;
-    }
-    .contact-link:hover { color: var(--accent); }
+    .contact-link { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .contact-link:hover { color: var(--lilac); }
 
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border); padding: 1.5rem 4vw;
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.75rem; color: var(--mid);
-    }
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid rgba(255,255,255,0.07); padding: 1.5rem 4vw; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); background: var(--dark-bg); }
 
     .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
@@ -227,9 +164,10 @@
       #hero { grid-template-columns: 1fr; padding-top: 6rem; gap: 3rem; }
       #hero::after { display: none; }
       nav { padding: 1rem 5vw; }
-      .nav-links { gap: 1.2rem; }
-      .nav-links a { font-size: 0.7rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.68rem; }
       section { padding: 4rem 5vw; }
+      .edu-card { flex-direction: column; gap: 1.25rem; }
       footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
     @media (max-width: 520px) { .nav-links { display: none; } }
@@ -237,17 +175,20 @@
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Anya Raval</a>
   <ul class="nav-links">
     <li><a href="#projects">Work</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#certificates">Certificates</a></li>
     <li><a href="#contact">Get in Touch</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
   <div class="hero-text">
     <div class="hero-eyebrow">UX/UI Designer & Developer</div>
@@ -274,6 +215,7 @@
   </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
   <div class="section-header">
     <span class="section-num">01</span>
@@ -288,12 +230,12 @@
         <span class="project-grade">78% — 1st Class</span>
       </div>
       <h3>Fair Play — Accessible Game Discovery</h3>
-      <p>High-fidelity prototype for a game store built around users with hearing, dexterity, speech, visual, and cognitive impairments. Applied WCAG 2.1 Level AA throughout. Validated through questionnaires, interviews, and heuristic evaluations.</p>
+      <p>High-fidelity prototype for a game store built around users with hearing, dexterity, speech, visual, and cognitive impairments. Applied WCAG 2.1 Level AA throughout, validated through questionnaires, interviews, and heuristic evaluations.</p>
       <div class="project-links">
         <a href="https://www.figma.com/proto/4UfZIWKqm5docl2iguxm4y/Fair-Play?t=EYUj9YtSZbazzX9K-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&node-id=30-177&starting-point-node-id=30%3A177" target="_blank" class="project-link">Prototype <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
         <a href="https://canva.link/o86attgatx20dvs" target="_blank" class="project-link">Personas <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
-        <a href="https://docs.google.com/document/d/1PVhFgPNBcW3KfIRTcAvxZOIvGhOCz-lisx4Yed9PB1Y/edit?usp=sharing" target="_blank" class="project-link">Report <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
-        <a href="https://docs.google.com/document/d/1IMSTXom2EZFDPlX1MVUXvaTYNcwFabO_1a8jF3Ikww0/edit?usp=sharing" target="_blank" class="project-link">Evaluation <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
+        <a href="https://www.dropbox.com/scl/fi/wds2lhaqzut41uop1yskp/anyaraval-1.pdf?rlkey=vwg0sut0e9itk9d5bt4s9klef&st=xv28nd1x&dl=0" target="_blank" class="project-link">Report <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
+        <a href="https://www.dropbox.com/scl/fi/6loar8900htobduad4lqg/anyaraval-2.pdf?rlkey=ok15exs5jd79i4nap7pm0wf9h&st=gu0k5bwz&dl=0" target="_blank" class="project-link">Evaluation <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
       </div>
     </div>
 
@@ -306,6 +248,19 @@
       <div class="project-links">
         <a href="https://www.figma.com/proto/fRIlDMHkb87lz070Zpo8pd/Project-9a---Safeguarding-Timeline-Generator?node-id=63-173&p=f&t=crNzsZP6HnvnVvIB-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=124%3A211" target="_blank" class="project-link">Prototype <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
         <a href="https://canva.link/9jtz3yd4bsm5t48" target="_blank" class="project-link">Personas <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+        <span class="project-tag">Emerging Tech · HCI · Collaborative · Client Pitch</span>
+        <span class="project-grade">77% — 1st Class</span>
+      </div>
+      <h3>ORB — Futuristic Travel Glove for Transport for Wales</h3>
+      <p>Tasked by Transport for Wales to design a futuristic solution using emerging technologies to improve travel. Conceived ORB: a smart glove with holographic travel guidance and an embedded NFC chip for effortless tap-in/tap-out at stations. Coded the companion app, collaborated on the physical prototype, and led the presentation to a client judge panel — achieving a first.</p>
+      <div class="project-links">
+        <a href="https://canva.link/rpr1gx25jn2kzk9" target="_blank" class="project-link">Leaflet <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
+        <a href="https://wise-surly-89347571.figma.site/" target="_blank" class="project-link">Companion App <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
       </div>
     </div>
 
@@ -337,6 +292,7 @@
   </div>
 </section>
 
+<!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-header">
     <span class="section-num">02</span>
@@ -344,42 +300,98 @@
     <div class="divider"></div>
   </div>
   <div class="timeline">
+
     <div class="timeline-item">
-      <div class="timeline-date">Oct 2025 — Present</div>
-      <div class="timeline-role">STEM Ambassador</div>
-      <div class="timeline-org">Cardiff University · TechnoCamps</div>
+      <div class="timeline-header">
+        <div class="timeline-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Cardiff_University_logo.svg" alt="Cardiff University" onerror="this.parentElement.innerHTML='CU'" />
+        </div>
+        <div class="timeline-meta">
+          <div class="timeline-date">Oct 2025 — Present</div>
+          <div class="timeline-role">STEM Ambassador</div>
+          <div class="timeline-org">Cardiff University · TechnoCamps</div>
+        </div>
+      </div>
       <ul>
         <li>Delivered interactive coding workshops in Python, Lego Spike, Scratch, and Microbit to 100+ primary school pupils across South Wales.</li>
         <li>Advocated for inclusive tech education through local and national outreach events.</li>
         <li>Represented Cardiff University's Computer Science department at career fairs and open days.</li>
       </ul>
     </div>
+
     <div class="timeline-item">
-      <div class="timeline-date">Jun 2025 — Aug 2025</div>
-      <div class="timeline-role">Summer Tech Camp Tutor & Assistant Location Coordinator</div>
-      <div class="timeline-org">FunTech</div>
+      <div class="timeline-header">
+        <div class="timeline-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/FunTech_Logo.png/320px-FunTech_Logo.png" alt="FunTech" onerror="this.parentElement.innerHTML='FT'" />
+        </div>
+        <div class="timeline-meta">
+          <div class="timeline-date">Jun 2025 — Aug 2025</div>
+          <div class="timeline-role">Summer Tech Camp Tutor & Assistant Location Coordinator</div>
+          <div class="timeline-org">FunTech</div>
+        </div>
+      </div>
       <ul>
         <li>Delivered daily lessons in Cyber Security, Game Design, and Python to students aged 8–16.</li>
         <li>Adapted teaching to varied abilities, achieving consistent 5/5 student satisfaction ratings.</li>
         <li>Supported operations, communications, and safeguarding as Northwood's assistant coordinator.</li>
       </ul>
     </div>
+
     <div class="timeline-item">
-      <div class="timeline-date">Jun 2024 — Aug 2024</div>
-      <div class="timeline-role">Residential Supervisor</div>
-      <div class="timeline-org">The Smallpeice Trust</div>
+      <div class="timeline-header">
+        <div class="timeline-logo-placeholder">SP</div>
+        <div class="timeline-meta">
+          <div class="timeline-date">Jun 2024 — Aug 2024</div>
+          <div class="timeline-role">Residential Supervisor</div>
+          <div class="timeline-org">The Smallpeice Trust</div>
+        </div>
+      </div>
       <ul>
         <li>Supervised GCSE and A-level students during STEM residential courses across the UK, including Girls Into Engineering at Loughborough University.</li>
         <li>Supported hands-on engineering projects and reinforced technical concepts.</li>
         <li>Developed skills in mentorship, supervision, and working with diverse student groups.</li>
       </ul>
     </div>
+
   </div>
 </section>
 
-<section id="skills">
+<!-- EDUCATION -->
+<section id="education">
   <div class="section-header">
     <span class="section-num">03</span>
+    <h2>Education</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="edu-card fade-up">
+    <div class="edu-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Cardiff_University_logo.svg" alt="Cardiff University" onerror="this.style.display='none'" />
+    </div>
+    <div class="edu-body">
+      <div class="edu-degree">Applied Software Engineering (BSc)</div>
+      <div class="edu-uni">Cardiff University</div>
+      <div class="edu-dates">Sep 2023 — Jun 2026</div>
+      <div class="edu-grade">⭐ Expected: First Class Honours</div>
+      <p style="font-size:0.85rem;color:var(--mid);margin-bottom:1rem;line-height:1.65;">Industry-designed course combining traditional computer science with real-world client projects, preparing students for professional software engineering environments.</p>
+      <div class="edu-modules">
+        <h4>Key Modules</h4>
+        <div class="module-tags">
+          <span class="module-tag">Mobile Development<span>77%</span></span>
+          <span class="module-tag">Cyber Security<span>78%</span></span>
+          <span class="module-tag">Adopting Technology<span>73%</span></span>
+          <span class="module-tag">Managing Change<span>73%</span></span>
+          <span class="module-tag">Commercial Frameworks, Languages & Tools<span>74%</span></span>
+          <span class="module-tag">Emerging Technologies<span>70%</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">04</span>
     <h2>Skills</h2>
     <div class="divider"></div>
   </div>
@@ -405,38 +417,59 @@
   </div>
 </section>
 
+<!-- CERTIFICATES -->
 <section id="certificates">
   <div class="section-header">
-    <span class="section-num">04</span>
+    <span class="section-num">05</span>
     <h2>Certifications</h2>
     <div class="divider"></div>
   </div>
   <div class="certs-grid">
+
     <a href="https://coursera.org/share/43681216033cc26c48970752cb2562f2" target="_blank" class="cert-card">
+      <div class="cert-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" onerror="this.parentElement.className='cert-logo-text';this.parentElement.textContent='G'" />
+      </div>
       <div class="cert-info"><div class="cert-issuer">Google</div><div class="cert-name">UX Design Professional Certificate</div></div>
       <span class="cert-arrow">↗</span>
     </a>
+
     <a href="https://www.freecodecamp.org/certification/anya_raval/responsive-web-design" target="_blank" class="cert-card">
+      <div class="cert-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/FreeCodeCamp_logo.png" alt="freeCodeCamp" onerror="this.parentElement.className='cert-logo-text';this.parentElement.textContent='fCC'" />
+      </div>
       <div class="cert-info"><div class="cert-issuer">freeCodeCamp</div><div class="cert-name">Responsive Web Design — 300hrs</div></div>
       <span class="cert-arrow">↗</span>
     </a>
+
     <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/Sj7temL583QAYpHXD/E6McHJDKsQYh79moz_Sj7temL583QAYpHXD_qZSqi9v5mkj7Z8Zp6_1748884938878_completion_certificate.pdf" target="_blank" class="cert-card">
+      <div class="cert-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Barclays_Eagle_-_Blue_Gradient_Background.svg/512px-Barclays_Eagle_-_Blue_Gradient_Background.svg.png" alt="JPMorgan" onerror="this.parentElement.className='cert-logo-text';this.parentElement.textContent='JPM'" />
+      </div>
       <div class="cert-info"><div class="cert-issuer">JPMorgan Chase & Co.</div><div class="cert-name">Software Engineering Job Simulation</div></div>
       <span class="cert-arrow">↗</span>
     </a>
+
     <a href="https://www.linkedin.com/in/anya-raval-b98434224/details/certifications/1747754733433/single-media-viewer/?profileId=ACoAADhOBKQBGIAAi19QDSirZxgE2Coxu_cV3p4" target="_blank" class="cert-card">
-      <div class="cert-info"><div class="cert-issuer">NCSC</div><div class="cert-name">CyberFirst Advanced — SCQF Level 6</div></div>
+      <div class="cert-logo-text">NCSC</div>
+      <div class="cert-info"><div class="cert-issuer">Nat. Cyber Security Centre</div><div class="cert-name">CyberFirst Advanced — SCQF Level 6</div></div>
       <span class="cert-arrow">↗</span>
     </a>
+
     <a href="https://experience.springpod.co.uk/certificates/k7cvzbgwnh" target="_blank" class="cert-card">
+      <div class="cert-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Barclays_Eagle_-_Blue_Gradient_Background.svg/512px-Barclays_Eagle_-_Blue_Gradient_Background.svg.png" alt="Barclays" onerror="this.parentElement.className='cert-logo-text';this.parentElement.textContent='BARC'" />
+      </div>
       <div class="cert-info"><div class="cert-issuer">Barclays</div><div class="cert-name">Developer Work Experience</div></div>
       <span class="cert-arrow">↗</span>
     </a>
+
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
-  <div class="section-num" style="margin-bottom:0.75rem;">05</div>
+  <div class="section-num" style="margin-bottom:0.75rem;color:var(--lilac);">06</div>
   <h2>Let's Work Together</h2>
   <p>Open to UX/UI design roles and collaborations. Based in London.</p>
   <div class="btn-row" style="justify-content:center;margin-bottom:2rem;">
@@ -462,7 +495,7 @@
 <script>
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up, .timeline-item').forEach(el => observer.observe(el));
 </script>
 </body>
