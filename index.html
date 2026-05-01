@@ -1,16 +1,800 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anya Raval — UX/UI Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FAF8F4;
+      --ink: #1A1714;
+      --warm-grey: #8C8680;
+      --accent: #C8503A;
+      --accent-soft: #F0E8E5;
+      --gold: #C9A96E;
+      --border: rgba(26,23,20,0.1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 4vw;
+      background: rgba(250,248,244,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4vw 4rem;
+      gap: 4rem;
+      position: relative;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: 10%; right: -6vw;
+      width: 50vw; height: 70vh;
+      border-radius: 50% 40% 60% 30%;
+      background: radial-gradient(ellipse at 60% 40%, #e8d5cf 0%, transparent 70%);
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-text { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 2rem; height: 1px;
+      background: var(--accent);
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--warm-grey);
+      max-width: 38ch;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+    .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .btn-primary:hover { background: var(--accent); }
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--ink);
+    }
+    .btn-outline:hover { background: var(--ink); color: var(--cream); }
+
+    .hero-stats {
+      position: relative; z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .stat-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      opacity: 0;
+      transform: translateX(30px);
+      animation: slideIn 0.6s forwards;
+    }
+    .stat-card:nth-child(1) { animation-delay: 0.3s; }
+    .stat-card:nth-child(2) { animation-delay: 0.5s; }
+    .stat-card:nth-child(3) { animation-delay: 0.7s; }
+    @keyframes slideIn {
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      min-width: 4.5rem;
+    }
+    .stat-label { font-size: 0.85rem; color: var(--warm-grey); line-height: 1.4; }
+    .stat-label strong { display: block; color: var(--ink); font-weight: 500; font-size: 0.95rem; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 6rem 4vw; }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .section-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-style: italic;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+    .divider {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      align-self: center;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: white; }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+      gap: 2px;
+    }
+    .project-card {
+      background: var(--cream);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: background 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--accent);
+      transition: height 0.35s ease;
+    }
+    .project-card:hover::before { height: 100%; }
+    .project-card:hover { background: var(--accent-soft); }
+    .project-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .project-grade {
+      display: inline-block;
+      background: var(--ink);
+      color: var(--cream);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      font-weight: 500;
+    }
+    .project-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .project-card p {
+      font-size: 0.88rem;
+      color: var(--warm-grey);
+      line-height: 1.75;
+      flex: 1;
+    }
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .project-link {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .project-link:hover { color: var(--accent); border-color: var(--accent); }
+    .project-link svg { width: 10px; height: 10px; }
+
+    /* ── EXPERIENCE TIMELINE ── */
+    #experience { background: var(--cream); }
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      max-width: 760px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.5rem; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 3rem;
+      padding-left: 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .timeline-item.visible { opacity: 1; transform: translateY(0); }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0.4rem;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--cream);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .timeline-date {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .timeline-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .timeline-org {
+      font-size: 0.82rem;
+      color: var(--warm-grey);
+      margin-bottom: 0.85rem;
+    }
+    .timeline-item ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .timeline-item li {
+      font-size: 0.88rem;
+      color: var(--warm-grey);
+      line-height: 1.65;
+      display: flex;
+      gap: 0.65rem;
+    }
+    .timeline-item li::before {
+      content: '—';
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--ink); color: var(--cream); }
+    #skills h2 { color: var(--cream); }
+    #skills .section-num { color: var(--gold); }
+    #skills .divider { background: rgba(255,255,255,0.1); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    .skill-group h4 {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-tag {
+      font-size: 0.78rem;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 2px;
+      color: rgba(250,248,244,0.75);
+      transition: all 0.2s;
+    }
+    .skill-tag:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── CERTIFICATES ── */
+    #certificates { background: white; }
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+      gap: 1rem;
+    }
+    .cert-card {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s;
+    }
+    .cert-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200,80,58,0.08);
+    }
+    .cert-info { flex: 1; }
+    .cert-issuer {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .cert-name {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+    .cert-arrow {
+      color: var(--warm-grey);
+      font-size: 1.1rem;
+      transition: transform 0.2s, color 0.2s;
+    }
+    .cert-card:hover .cert-arrow { transform: translate(3px, -3px); color: var(--accent); }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--cream);
+      text-align: center;
+      padding: 8rem 4vw;
+    }
+    #contact h2 { margin-bottom: 1rem; }
+    #contact p {
+      color: var(--warm-grey);
+      max-width: 40ch;
+      margin: 0 auto 2.5rem;
+      font-size: 1rem;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 4vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--warm-grey);
+    }
+
+    /* ── FADE IN ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      #hero {
+        grid-template-columns: 1fr;
+        padding-top: 6rem;
+        gap: 3rem;
+      }
+      #hero::after { display: none; }
+      nav { padding: 1rem 5vw; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.72rem; }
+      section { padding: 4rem 5vw; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Hi, I'm Anya 👋</h1>
-  <p>Frontend Developer</p>
 
-  <h2>Projects</h2>
-  <ul>
-    <li>Project 1</li>
-    <li>Project 2</li>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Anya Raval</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certificates">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">UX/UI Designer & Developer</div>
+    <h1>Designing with <em>purpose</em> & precision</h1>
+    <p class="hero-desc">
+      Applied Software Engineering student at Cardiff University — crafting accessible, research-led digital experiences at the intersection of design and code.
+    </p>
+    <div class="btn-row">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="mailto:anya.raval@gmail.com" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-num">90%</div>
+      <div class="stat-label">
+        <strong>Mind Matters App</strong>
+        Commended as marketplace-ready by lecturer
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">78%</div>
+      <div class="stat-label">
+        <strong>Fair Play — WCAG 2.1</strong>
+        First-class honours, accessibility platform
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">#1</div>
+      <div class="stat-label">
+        <strong>SkillSparkZ</strong>
+        Highest grade in cohort of 100 students
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Selected Work</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card fade-up">
+      <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+        <span class="project-tag">UX Research · Accessibility · Figma</span>
+        <span class="project-grade">78% — 1st Class</span>
+      </div>
+      <h3>Fair Play — Accessible Game Discovery</h3>
+      <p>High-fidelity prototype for a game store built around users with hearing, dexterity, speech, visual, and cognitive impairments. Applied WCAG 2.1 Level AA throughout. Validated through questionnaires, interviews, and heuristic evaluations.</p>
+      <div class="project-links">
+        <a href="https://www.figma.com/proto/4UfZIWKqm5docl2iguxm4y/Fair-Play?t=EYUj9YtSZbazzX9K-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&node-id=30-177&starting-point-node-id=30%3A177" target="_blank" class="project-link">Prototype <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
+        <a href="https://canva.link/o86attgatx20dvs" target="_blank" class="project-link">Personas <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
+        <a href="https://docs.google.com/document/d/1PVhFgPNBcW3KfIRTcAvxZOIvGhOCz-lisx4Yed9PB1Y/edit?usp=sharing" target="_blank" class="project-link">Report <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
+        <a href="https://docs.google.com/document/d/1IMSTXom2EZFDPlX1MVUXvaTYNcwFabO_1a8jF3Ikww0/edit?usp=sharing" target="_blank" class="project-link">Evaluation <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+        <span class="project-tag">UX Lead · React · Java · Client Project</span>
+      </div>
+      <h3>ODIS Systems — Safeguarding Platform</h3>
+      <p>Leading UX design for a safeguarding intervention management platform as part of a real industry client engagement. Translated stakeholder requirements into structured data models and responsive, high-fidelity Figma prototypes. Contributing to full-stack development in React and Java.</p>
+      <div class="project-links">
+        <a href="https://www.figma.com/proto/fRIlDMHkb87lz070Zpo8pd/Project-9a---Safeguarding-Timeline-Generator?node-id=63-173&p=f&t=crNzsZP6HnvnVvIB-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=124%3A211" target="_blank" class="project-link">Prototype <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
+        <a href="https://canva.link/9jtz3yd4bsm5t48" target="_blank" class="project-link">Personas <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 9L9 1M9 1H3M9 1V7"/></svg></a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+        <span class="project-tag">Android · Kotlin · Cognitive Science</span>
+        <span class="project-grade">90% on Application</span>
+      </div>
+      <h3>Mind Matters — Alzheimer's Prevention App</h3>
+      <p>Independently built a brain-training Android app for Alzheimer's prevention in older adults. Designed six cognitively-tailored exercises based on literature research and 50+ user interviews. Lecturer commended it as "easily marketplace-ready."</p>
+    </div>
+
+    <div class="project-card fade-up">
+      <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+        <span class="project-tag">UX Design · Wireframing · Gamification</span>
+        <span class="project-grade">76.3% — Highest in Cohort</span>
+      </div>
+      <h3>SkillSparkZ — Gamified Employability App</h3>
+      <p>Designed wireframes and interface mock-ups to pitch a gamified employability platform. Awarded the highest grade in a cohort of 100 students — demonstrating strong design thinking and communication.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Experience</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-date">Oct 2025 — Present</div>
+      <div class="timeline-role">STEM Ambassador</div>
+      <div class="timeline-org">Cardiff University · TechnoCamps</div>
+      <ul>
+        <li>Delivered interactive coding workshops in Python, Lego Spike, Scratch, and Microbit to 100+ primary school pupils across South Wales.</li>
+        <li>Advocated for inclusive tech education through local and national outreach events.</li>
+        <li>Represented Cardiff University's Computer Science department at career fairs and open days.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Jun 2025 — Aug 2025</div>
+      <div class="timeline-role">Summer Tech Camp Tutor & Assistant Location Coordinator</div>
+      <div class="timeline-org">FunTech</div>
+      <ul>
+        <li>Delivered daily lessons in Cyber Security, Game Design, and Python to students aged 8–16.</li>
+        <li>Adapted teaching to varied abilities, achieving consistent 5/5 student satisfaction ratings.</li>
+        <li>Supported operations, communications, and safeguarding as Northwood's assistant coordinator.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Jun 2024 — Aug 2024</div>
+      <div class="timeline-role">Residential Supervisor</div>
+      <div class="timeline-org">The Smallpeice Trust</div>
+      <ul>
+        <li>Supervised GCSE and A-level students during STEM residential courses across the UK, including the Girls Into Engineering programme at Loughborough University.</li>
+        <li>Supported hands-on engineering projects and reinforced technical concepts.</li>
+        <li>Developed skills in mentorship, supervision, and working with diverse student groups.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Skills</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group fade-up">
+      <h4>Design & Research</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">Wireframing</span>
+        <span class="skill-tag">Prototyping</span>
+        <span class="skill-tag">Usability Testing</span>
+        <span class="skill-tag">WCAG 2.1 Accessibility</span>
+        <span class="skill-tag">User Interviews</span>
+        <span class="skill-tag">Heuristic Evaluation</span>
+        <span class="skill-tag">User Flows</span>
+        <span class="skill-tag">Requirements Gathering</span>
+        <span class="skill-tag">Questionnaires</span>
+      </div>
+    </div>
+    <div class="skill-group fade-up">
+      <h4>Development</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Kotlin</span>
+        <span class="skill-tag">SQL</span>
+      </div>
+    </div>
+    <div class="skill-group fade-up">
+      <h4>Engineering</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Agile / SCRUM</span>
+        <span class="skill-tag">Sprint Planning</span>
+        <span class="skill-tag">Code Reviews</span>
+        <span class="skill-tag">Testing</span>
+        <span class="skill-tag">Client-facing Delivery</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Certifications</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="certs-grid">
+    <a href="https://coursera.org/share/43681216033cc26c48970752cb2562f2" target="_blank" class="cert-card">
+      <div class="cert-info">
+        <div class="cert-issuer">Google</div>
+        <div class="cert-name">UX Design Professional Certificate</div>
+      </div>
+      <span class="cert-arrow">↗</span>
+    </a>
+    <a href="https://www.freecodecamp.org/certification/anya_raval/responsive-web-design" target="_blank" class="cert-card">
+      <div class="cert-info">
+        <div class="cert-issuer">freeCodeCamp</div>
+        <div class="cert-name">Responsive Web Design — 300hrs</div>
+      </div>
+      <span class="cert-arrow">↗</span>
+    </a>
+    <a href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/Sj7temL583QAYpHXD/E6McHJDKsQYh79moz_Sj7temL583QAYpHXD_qZSqi9v5mkj7Z8Zp6_1748884938878_completion_certificate.pdf" target="_blank" class="cert-card">
+      <div class="cert-info">
+        <div class="cert-issuer">JPMorgan Chase & Co.</div>
+        <div class="cert-name">Software Engineering Job Simulation</div>
+      </div>
+      <span class="cert-arrow">↗</span>
+    </a>
+    <a href="https://www.linkedin.com/in/anya-raval-b98434224/details/certifications/1747754733433/single-media-viewer/?profileId=ACoAADhOBKQBGIAAi19QDSirZxgE2Coxu_cV3p4" target="_blank" class="cert-card">
+      <div class="cert-info">
+        <div class="cert-issuer">NCSC</div>
+        <div class="cert-name">CyberFirst Advanced — SCQF Level 6</div>
+      </div>
+      <span class="cert-arrow">↗</span>
+    </a>
+    <a href="https://experience.springpod.co.uk/certificates/k7cvzbgwnh" target="_blank" class="cert-card">
+      <div class="cert-info">
+        <div class="cert-issuer">Barclays</div>
+        <div class="cert-name">Developer Work Experience</div>
+      </div>
+      <span class="cert-arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-num" style="margin-bottom:0.75rem;">05</div>
+  <h2>Let's Work Together</h2>
+  <p>Open to UX/UI design roles and collaborations. Based in London.</p>
+  <div class="btn-row" style="justify-content:center;margin-bottom:2rem;">
+    <a href="mailto:anya.raval@gmail.com" class="btn btn-primary">anya.raval@gmail.com</a>
+  </div>
+  <div class="contact-links">
+    <a href="https://www.linkedin.com/in/anya-raval5" target="_blank" class="contact-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a href="tel:07398721022" class="contact-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.6 19.79 19.79 0 01.22 5 2 2 0 012.18 3H5.22a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.38a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      07398 721 022
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Anya Raval</span>
+  <span>UX/UI Designer · Cardiff University</span>
+</footer>
+
+<script>
+  // Intersection observer for fade-up and timeline animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up, .timeline-item').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
