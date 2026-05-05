@@ -27,7 +27,9 @@
       background: rgba(247,245,251,0.92); backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; letter-spacing: 0.02em; color: var(--ink); text-decoration: none; }
+    
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; font-family: 'Playfair Display', serif; font-size: 1.15rem; letter-spacing: 0.02em; color: var(--ink); text-decoration: none; } 
+    .nav-logo img { height: 26px; width: 26px; object-fit: contain; }
     .nav-links { display: flex; gap: 1.75rem; list-style: none; }
     .nav-links a { font-size: 0.76rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
@@ -171,7 +173,10 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">Anya Raval</a>
+  <a class="nav-logo" href="#">
+    <img src="logo.png" alt="Logo">
+    <span>Anya Raval</span>
+  </a>
   <ul class="nav-links">
     <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
